@@ -18,6 +18,13 @@ public class Crime {
         mDate = new Date();
     }
 
+    public Crime(String title, boolean solved) {
+        this();
+
+        mTitle = title;
+        mSolved = solved;
+    }
+
     public UUID getId() {
         return mId;
     }

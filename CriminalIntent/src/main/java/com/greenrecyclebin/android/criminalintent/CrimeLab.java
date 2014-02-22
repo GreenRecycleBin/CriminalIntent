@@ -9,6 +9,7 @@ import java.util.UUID;
  * Created by greenrecyclebin on 22/2/14.
  */
 public class CrimeLab {
+
     private static CrimeLab sCrimeLab;
 
     private Context mAppContext;
@@ -17,6 +18,9 @@ public class CrimeLab {
     private CrimeLab(Context appContext) {
         mAppContext = appContext;
         mCrimes = new ArrayList<>();
+
+        for (int i = 0; i < 100; ++i)
+            mCrimes.add(new Crime("Crime #" + i, i % 2 == 0));
     }
 
     public static synchronized CrimeLab get(Context c) {
@@ -37,4 +41,5 @@ public class CrimeLab {
 
         return null;
     }
+
 }

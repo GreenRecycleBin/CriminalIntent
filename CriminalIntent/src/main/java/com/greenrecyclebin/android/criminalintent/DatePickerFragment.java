@@ -12,6 +12,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import static android.content.DialogInterface.BUTTON_NEGATIVE;
+import static android.content.DialogInterface.BUTTON_POSITIVE;
+import static android.content.DialogInterface.OnClickListener;
+
 /**
  * Created by greenrecyclebin on 29/6/14.
  */
@@ -36,7 +40,17 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day) {
+            @Override
+            public void setTitle(CharSequence title) {
+                super.setTitle(getResources().getString(R.string.date_picker_title));
+            }
+        };
+
+        dialog.setButton(BUTTON_POSITIVE, getResources().getString(android.R.string.ok), dialog);
+        dialog.setButton(BUTTON_NEGATIVE, "", (OnClickListener) null);
+
+        return dialog;
     }
 
 
